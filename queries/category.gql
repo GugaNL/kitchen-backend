@@ -1,0 +1,45 @@
+query GETCATEGORY($id: ID = "3") {
+  category (id: $id) {
+    id
+    title
+  }
+}
+
+
+query Categories {
+  categories {
+    id
+    title
+  }
+}
+
+
+mutation CreateCategory($title: String! = "bolos") {
+  createCategory(data: {
+    title: $title
+  }) {
+    id
+    title
+  }
+}
+
+
+# { "categoryId": "2",
+#  "data": { "title": "sobremesas"}
+# }
+
+mutation UPDATE_CATEGORY($categoryId: ID!, $data: CategoryInput!) {
+  updateCategory(categoryId: $categoryId, data: $data) {
+    id
+    title
+  }
+}
+
+
+# {
+#  "categoryId": "11"
+# }
+
+mutation DeleteCategory($categoryId: ID!) {
+  deleteCategory(categoryId: $categoryId)
+}
