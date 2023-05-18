@@ -1,7 +1,7 @@
 import { ApolloServer } from 'apollo-server';
 import { typeDefs, resolvers } from './graphql/schema';
-//import { knex } from './knex';
 import { CategorySQLDataSource } from './graphql/schema/category/datasources';
+import { RecipeSQLDataSource } from './graphql/schema/recipe/datasources';
 
 const knexConfig = {
   client: process.env.DATABASE_CLIENT,
@@ -12,12 +12,13 @@ const knexConfig = {
   },
 };
 
-const db = new CategorySQLDataSource(knexConfig);
+const dbCategory = new CategorySQLDataSource(knexConfig);
+const dbRecipes = new RecipeSQLDataSource(knexConfig);
 
 const server = new ApolloServer({
   typeDefs,
   resolvers,
-  dataSources: () => ({ db }),
+  dataSources: () => ({ dbCategory, dbRecipes }),
 });
 
 server.listen(4003).then(() => {
