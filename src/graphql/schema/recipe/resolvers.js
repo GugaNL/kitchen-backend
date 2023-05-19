@@ -1,6 +1,6 @@
 const DataLoader = require('dataloader');
 
-//Category field
+//Category field //without dataloader
 // const category = async ({ id: category_id }, _, { dataSources }) => {
 //   const response = await dataSources.dbCategory.getCategory(category_id);
 //   return response;
@@ -29,8 +29,23 @@ const recipe = async (_, { id }, { dataSources }) => {
   return response;
 };
 
+const createRecipe = async (_, { data }, { dataSources }) => {
+  const response = await dataSources.dbRecipe.insertRecipe(data);
+  return response;
+};
+
+const updateRecipe = async (_, { recipeId, data }, { dataSources }) => {
+  const response = await dataSources.dbRecipe.setRecipe(recipeId, data);
+  return response;
+};
+
+const deleteRecipe = async (_, { recipeId }, { dataSources }) => {
+  const response = await dataSources.dbRecipe.removeRecipe(recipeId);
+  return response;
+};
+
 export const recipeResolvers = {
   Query: { recipe, recipes, category },
   Recipe: { category },
-  //Mutation: { createCategory, updateCategory, deleteCategory },
+  Mutation: { createRecipe, updateRecipe, deleteRecipe },
 };
