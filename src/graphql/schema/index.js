@@ -1,4 +1,6 @@
 import { gql } from 'apollo-server';
+import { loginTypedefs } from './login/typesdefs';
+import { loginResolvers } from './login/resolvers';
 import { categoryTypedefs } from './category/typedefs';
 import { categoryResolvers } from './category/resolvers';
 import { recipeTypedefs } from './recipe/typedefs';
@@ -24,5 +26,5 @@ const rootResolvers = {
   },
 };
 
-export const typeDefs = [rootTypeDefs, categoryTypedefs, recipeTypedefs, apiFiltersTypedefs];
-export const resolvers = [rootResolvers, categoryResolvers, recipeResolvers];
+export const typeDefs = [rootTypeDefs, categoryTypedefs, recipeTypedefs, apiFiltersTypedefs, loginTypedefs];
+export const resolvers = [rootResolvers, categoryResolvers, recipeResolvers, loginResolvers];

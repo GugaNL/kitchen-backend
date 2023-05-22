@@ -3,3 +3,7 @@ node_modules/
 
 
 /.vscode
+
+
+# dotenv environment variables file
+.env
