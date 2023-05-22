@@ -1,3 +1,5 @@
+import { AuthenticationError } from "apollo-server";
+
 const category = async (_, { id }, { dataSources }) => {
   const response = await dataSources.dbCategory.getCategory(id);
   return response;
@@ -8,7 +10,10 @@ const categories = async (parent, args, { dataSources }) => {
   return response;
 };
 
-const createCategory = async (_, { data }, { dataSources }) => {
+const createCategory = async (_, { data }, { dataSources, loggedUserId }) => {
+  if (!loggedUserId) {
+    throw new AuthenticationError('Usuário sem permissão');
+  }
   const { title = '' } = data;
   const response = await dataSources.dbCategory.insertCategory(title);
   return response;
