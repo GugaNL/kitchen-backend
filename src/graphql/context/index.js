@@ -1,6 +1,15 @@
 import jwt from 'jsonwebtoken';
 
-const authorizeLogin = (req) => {
+const verifyJwtToken = async (token) => {
+  try {
+    const { userId } = jwt.verify(token, process.env.JWT_SECRET);
+    return userId;
+  } catch (error) {
+    return '';
+  }
+};
+
+const authorizeLogin = async (req) => {
   if (!req || !req.headers || !req.headers.authorization) return '';
 
   const { headers } = req;
@@ -8,17 +17,21 @@ const authorizeLogin = (req) => {
 
   try {
     const [_bearer, token] = authorization.split(' ');
-    const { userId } = jwt.verify(token, process.env.JWT_SECRET);
-    return userId;
+    return await verifyJwtToken(token);
   } catch (error) {
-    return ''
+    return '';
   }
 };
 
-export const context = ({ req }) => {
-  const loggedUserId = authorizeLogin(req);
+export const context = async ({ req, res }) => {
+  let loggedUserId = await authorizeLogin(req);
+
+  if (!loggedUserId) {
+    loggedUserId = '';
+  }
 
   return {
     loggedUserId,
+    res,
   };
 };

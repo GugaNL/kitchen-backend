@@ -6,7 +6,7 @@ const register = async (_, { data }, { dataSources }) => {
 
 export const login = async (_, { data }, { dataSources }) => {
   const { email, password } = data;
-  return dataSources.dbLogin.login(email, password);
+  return await dataSources.dbLogin.login(email, password);
 };
 
 export const logout = async (_, { email }, { dataSources }) => {

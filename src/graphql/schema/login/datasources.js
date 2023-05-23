@@ -10,6 +10,7 @@ export class LoginSQLDataSource extends SQLDataSource {
       .select('*')
       .from('login')
       .where({ email: email });
+
     if (exists.length > 0) {
       throw new ValidationError('Email já existente');
     }
@@ -53,12 +54,26 @@ export class LoginSQLDataSource extends SQLDataSource {
       expiresIn: '2d',
     });
 
-
+    //set cookie
+    // this.context.res.cookie('jwtToken', token, {
+    //   secure: false, //change true after deploy
+    //   httpOnly: true, //No accessible by code
+    //   maxAge: 1000 * 60 * 60 * 24 * 7, //7 days
+    //   path: '/',
+    //   sameSite: 'strict' //change for none after deploy
+    // })
 
     return {
       email,
       userId,
       token,
     };
+  }
+
+  async logout(email) {
+    const userLogin = await this.getUserLogin(email);
+    const { id: userId, password: passwordHash } = userLogin[0];
+
+    //await this.knex.update({ password: ''})
   }
 }
