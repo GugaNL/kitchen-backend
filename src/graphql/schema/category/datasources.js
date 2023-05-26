@@ -1,9 +1,15 @@
 const { SQLDataSource } = require('datasource-sql');
 import { ValidationError } from 'apollo-server';
+import { makeCategoryDataLoader } from '../category/dataloaders';
 
 const MINUTE = 60;
 
 export class CategorySQLDataSource extends SQLDataSource {
+  constructor(dbConnection) {
+    super(dbConnection);
+    this.dataLoader = makeCategoryDataLoader(this.listCategories.bind(this));
+  }
+
   async getCategory(id) {
     const response = await this.knex
       .select('*')
@@ -63,5 +69,9 @@ export class CategorySQLDataSource extends SQLDataSource {
     const response = await this.knex.delete().from('category').where({ id: categoryId }).cache(MINUTE);
 
     return response;
+  }
+
+  batchLoadCategoryById(id) {
+    return this.dataLoader.load(id);
   }
 }
