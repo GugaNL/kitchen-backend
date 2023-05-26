@@ -1,0 +1,76 @@
+{
+  "recipeId": "2"
+}
+
+query GET_RECIPE($recipeId: ID!) {
+  recipe(id: $recipeId) {
+    id
+    title
+    duration
+    category {
+      id
+      title
+    }
+  }
+}
+
+
+query GET_RECIPES {
+  recipes {
+    id
+    title
+    duration
+    category {
+      id
+      title
+    }
+  }
+}
+
+
+{
+  "data": {
+    "title": "Sarapatel com pirão",
+    "image": "",
+    "rating": 1,
+    "duration": "3h",
+    "ingredients": "1/4 de bode;sarapatel;verduras",
+    "prepare": "coloque tudo no fogo por várias horas",
+    "category": "3"
+  }
+}
+
+mutation CREATE_RECIPE($data: RecipeInput!) {
+  createRecipe(data: $data) {
+    title
+    image
+    rating
+    duration
+    ingredients
+    prepare
+  }
+}
+
+
+{  "recipeId": "2",
+  "data": {
+    "title": "Arrumadinho de charque",
+    "category_id": "2",
+    "duration": "4h"
+  }
+}
+
+mutation UPDATE_RECIPE($recipeId: ID!, $data: UpdateRecipeInput!) {
+  updateRecipe(recipeId: $recipeId, data: $data) {
+    title
+  }
+}
+
+
+{
+  "recipeId": "3"
+}
+
+mutation DELETE_RECIPE($recipeId: ID!) {
+  deleteRecipe(recipeId: $recipeId)
+}

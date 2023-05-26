@@ -1,0 +1,28 @@
+{
+  "data": {
+    "email": "junior@gmail.com",
+    "password": "123"
+  }
+}
+
+mutation REGISTER($data: LoginInput) {
+  register(data: $data) {
+    email
+  }
+}
+
+
+{
+  "data": {
+    "email": "junior@gmail.com",
+    "password": "123"
+  }
+}
+
+mutation LOGIN($data: LoginInput!) {
+  login(data: $data) {
+    userId
+    email
+    token
+  }
+}

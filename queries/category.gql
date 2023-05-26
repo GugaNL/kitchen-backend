@@ -1,12 +1,16 @@
-query GETCATEGORY($id: ID = "3") {
-  category (id: $id) {
+{
+  "id": "2"
+}
+
+query GET_CATEGORY($id: ID!) {
+  category(id: $id) {
     id
     title
   }
 }
 
 
-query Categories {
+query GET_CATEGORIES {
   categories {
     id
     title
@@ -14,7 +18,7 @@ query Categories {
 }
 
 
-mutation CreateCategory($title: String! = "bolos") {
+mutation CREATE_CATEGORY($title: String! = "pastel de belém") {
   createCategory(data: {
     title: $title
   }) {
@@ -40,6 +44,6 @@ mutation UPDATE_CATEGORY($categoryId: ID!, $data: CategoryInput!) {
 #  "categoryId": "11"
 # }
 
-mutation DeleteCategory($categoryId: ID!) {
+mutation DELETE_CATEGORY($categoryId: ID!) {
   deleteCategory(categoryId: $categoryId)
 }
