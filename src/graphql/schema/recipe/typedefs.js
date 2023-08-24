@@ -17,7 +17,7 @@ export const recipeTypedefs = gql`
     id: ID!
     title: String!
     category: Category
-    image: String
+    image: Image
     rating: Int
     duration: String
     ingredients: [String!]!
@@ -27,7 +27,7 @@ export const recipeTypedefs = gql`
   input RecipeInput {
     title: String!
     category: ID!
-    image: String
+    image: ID!
     rating: Int
     duration: String
     ingredients: [String!]!
@@ -37,7 +37,7 @@ export const recipeTypedefs = gql`
   input UpdateRecipeInput {
     title: String
     category_id: ID!
-    image: String
+    image_id: ID!
     rating: Int
     duration: String
     ingredients: [String]

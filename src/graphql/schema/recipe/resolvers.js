@@ -1,9 +1,11 @@
-const category = async ({ id: category_id }, _, { dataSources }) => {
-  return dataSources.dbCategory.batchLoadCategoryById(category_id);
+const category = async ({ category_id = null }, _, { dataSources }) => {
+  if (category_id) {
+    return dataSources.dbCategory.batchLoadCategoryById(category_id);
+  }
 };
 
 const recipes = async (_, __, { dataSources }) => {
-  const response = dataSources.dbRecipe.listRecipes();
+  const response = await dataSources.dbRecipe.listRecipes();
   return response;
 };
 
@@ -27,8 +29,19 @@ const deleteRecipe = async (_, { recipeId }, { dataSources }) => {
   return response;
 };
 
+export const imageUpload = async (_, { file }, { dataSources }) => {
+  const response = await dataSources.dbImage.insertImage(file);
+  return response;
+};
+
+const image = async ({ image_id = null }, _, { dataSources }) => {
+  if (image_id) {
+    return dataSources.dbImage.batchLoadImageById(image_id);
+  }
+};
+
 export const recipeResolvers = {
   Query: { recipe, recipes },
-  Recipe: { category },
+  Recipe: { category, image },
   Mutation: { createRecipe, updateRecipe, deleteRecipe },
 };

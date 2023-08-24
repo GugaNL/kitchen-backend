@@ -5,6 +5,7 @@ import { categoryTypedefs } from './category/typedefs';
 import { categoryResolvers } from './category/resolvers';
 import { recipeTypedefs } from './recipe/typedefs';
 import { recipeResolvers } from './recipe/resolvers';
+import { imageTypedefs } from './image/typesdefs';
 import { apiFiltersTypedefs } from './api-filters/typedefs';
 
 const rootTypeDefs = gql`
@@ -26,5 +27,5 @@ const rootResolvers = {
   },
 };
 
-export const typeDefs = [rootTypeDefs, categoryTypedefs, recipeTypedefs, apiFiltersTypedefs, loginTypedefs];
+export const typeDefs = [rootTypeDefs, categoryTypedefs, recipeTypedefs, imageTypedefs, apiFiltersTypedefs, loginTypedefs];
 export const resolvers = [rootResolvers, categoryResolvers, recipeResolvers, loginResolvers];

@@ -1,6 +1,6 @@
 const { SQLDataSource } = require('datasource-sql');
 import { ValidationError } from 'apollo-server';
-import { makeCategoryDataLoader } from '../category/dataloaders';
+import { makeCategoryDataLoader } from './dataloaders';
 
 const MINUTE = 60;
 
