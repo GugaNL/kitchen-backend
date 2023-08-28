@@ -1,5 +1,6 @@
 const { SQLDataSource } = require('datasource-sql');
-import { ValidationError } from 'apollo-server';
+const { ValidationError } = require('apollo-server');
+// import { ValidationError } from 'apollo-server';
 
 const MINUTE = 60;
 

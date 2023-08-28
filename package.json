@@ -5,7 +5,8 @@
   "main": "src/index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "dev": "nodemon -r dotenv/config -r sucrase/register src/index.js"
+    "dev": "nodemon -r dotenv/config -r sucrase/register src/index.js",
+    "start": "node src/index.js"
   },
   "keywords": [],
   "author": "",
@@ -20,7 +21,7 @@
     "graphql": "^16.6.0",
     "jsonwebtoken": "^9.0.0",
     "knex": "^2.4.2",
-    "mysql2": "^3.3.1",
+    "mysql2": "^2.3.3",
     "node-fetch": "^2.6.1"
   },
   "devDependencies": {

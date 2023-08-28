@@ -1,4 +1,5 @@
-import { gql } from "apollo-server";
+// import { gql } from "apollo-server";
+const { gql } = require('apollo-server');
 
 export const recipeTypedefs = gql`
   extend type Query {
