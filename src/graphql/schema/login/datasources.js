@@ -1,10 +1,10 @@
 const { SQLDataSource } = require('datasource-sql');
-import { ValidationError } from 'apollo-server';
-import bcrypt from 'bcrypt';
-import jwt from 'jsonwebtoken';
-import { AuthenticationError } from 'apollo-server-errors';
+const { ValidationError } = require('apollo-server')
+const bcrypt = require('bcrypt')
+const jwt = require('jsonwebtoken')
+const { AuthenticationError } = require('apollo-server-errors')
 
-export class LoginSQLDataSource extends SQLDataSource {
+class LoginSQLDataSource extends SQLDataSource {
   async insertLogin(email, password) {
     const exists = await this.knex
       .select('*')
@@ -76,4 +76,8 @@ export class LoginSQLDataSource extends SQLDataSource {
 
     //await this.knex.update({ password: ''})
   }
+}
+
+module.exports = {
+  LoginSQLDataSource
 }

@@ -1,7 +1,7 @@
-import { gql } from 'apollo-server-core';
+const { gql } = require('apollo-server-core')
 
 
-export const imageTypedefs = gql`
+const imageTypedefs = gql`
   extend type Query {
     image(id: ID!): Image!
     images(input: ApiFiltersInput): [Image!]!
@@ -28,3 +28,7 @@ export const imageTypedefs = gql`
     mimetype: String!
   }
 `;
+
+module.exports = {
+  imageTypedefs
+}

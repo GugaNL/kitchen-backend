@@ -1,12 +1,10 @@
 const { SQLDataSource } = require('datasource-sql');
-import { ValidationError } from 'apollo-server';
-import { makeImageDataLoader } from './dataloaders';
-//const path = require('path');
-//const fs = require('fs');
+const { ValidationError } = require('apollo-server')
+const { makeImageDataLoader } = require('./dataloaders')
 
 const MINUTE = 60;
 
-export class ImageSQLDataSource extends SQLDataSource {
+class ImageSQLDataSource extends SQLDataSource {
   constructor(dbConnection) {
     super(dbConnection);
     this.dataLoader = makeImageDataLoader(this.listImages.bind(this));
@@ -126,4 +124,8 @@ export class ImageSQLDataSource extends SQLDataSource {
   batchLoadImageById(id) {
     return this.dataLoader.load(id);
   }
+}
+
+module.exports = {
+  ImageSQLDataSource
 }

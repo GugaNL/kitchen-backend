@@ -29,7 +29,7 @@ const deleteRecipe = async (_, { recipeId }, { dataSources }) => {
   return response;
 };
 
-export const imageUpload = async (_, { file }, { dataSources }) => {
+const imageUpload = async (_, { file }, { dataSources }) => {
   const response = await dataSources.dbImage.insertImage(file);
   return response;
 };
@@ -40,8 +40,12 @@ const image = async ({ image_id = null }, _, { dataSources }) => {
   }
 };
 
-export const recipeResolvers = {
+const recipeResolvers = {
   Query: { recipe, recipes },
   Recipe: { category, image },
   Mutation: { createRecipe, updateRecipe, deleteRecipe },
 };
+
+module.exports = {
+  imageUpload, recipeResolvers
+}

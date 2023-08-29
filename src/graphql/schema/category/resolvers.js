@@ -1,4 +1,4 @@
-import { AuthenticationError } from "apollo-server";
+const { AuthenticationError } = require('apollo-server')
 
 const category = async (_, { id }, { dataSources }) => {
   const response = await dataSources.dbCategory.getCategory(id);
@@ -29,7 +29,11 @@ const deleteCategory = async (_, { categoryId }, { dataSources }) => {
   return response;
 };
 
-export const categoryResolvers = {
+const categoryResolvers = {
   Query: { category, categories },
   Mutation: { createCategory, updateCategory, deleteCategory },
 };
+
+module.exports = {
+  categoryResolvers
+}

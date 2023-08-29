@@ -1,6 +1,6 @@
-import { gql } from 'apollo-server-core';
+const { gql } = require('apollo-server-core')
 
-export const loginTypedefs = gql`
+const loginTypedefs = gql`
   extend type Mutation {
     register(data: LoginInput): Login!
     login(data: LoginInput!): LoginReturn!
@@ -25,3 +25,7 @@ export const loginTypedefs = gql`
     token: String!
   }
 `;
+
+module.exports = {
+  loginTypedefs
+}

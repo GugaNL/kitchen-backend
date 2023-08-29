@@ -1,10 +1,10 @@
 const { SQLDataSource } = require('datasource-sql');
-import { ValidationError } from 'apollo-server';
-import { makeCategoryDataLoader } from './dataloaders';
+const { ValidationError } = require('apollo-server')
+const { makeCategoryDataLoader } = require('./dataloaders')
 
 const MINUTE = 60;
 
-export class CategorySQLDataSource extends SQLDataSource {
+class CategorySQLDataSource extends SQLDataSource {
   constructor(dbConnection) {
     super(dbConnection);
     this.dataLoader = makeCategoryDataLoader(this.listCategories.bind(this));
@@ -74,4 +74,8 @@ export class CategorySQLDataSource extends SQLDataSource {
   batchLoadCategoryById(id) {
     return this.dataLoader.load(id);
   }
+}
+
+module.exports = {
+  CategorySQLDataSource
 }

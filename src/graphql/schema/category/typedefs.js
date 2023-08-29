@@ -1,6 +1,7 @@
-import { gql } from "apollo-server";
+const { gql } = require('apollo-server')
 
-export const categoryTypedefs = gql`
+
+const categoryTypedefs = gql`
   extend type Query {
     category(id: ID!): Category
     categories(input: ApiFiltersInput): [Category!]!
@@ -21,3 +22,7 @@ export const categoryTypedefs = gql`
     title: String!
   }
 `
+
+module.exports = {
+  categoryTypedefs
+}

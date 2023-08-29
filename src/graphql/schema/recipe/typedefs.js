@@ -1,7 +1,6 @@
-// import { gql } from "apollo-server";
 const { gql } = require('apollo-server');
 
-export const recipeTypedefs = gql`
+const recipeTypedefs = gql`
   extend type Query {
     recipe(id: ID!): Recipe!
     recipes(input: ApiFiltersInput): [Recipe!]!
@@ -45,3 +44,7 @@ export const recipeTypedefs = gql`
     prepare: String
   }
 `
+
+module.exports = {
+  recipeTypedefs
+}

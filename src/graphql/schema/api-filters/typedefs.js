@@ -1,6 +1,6 @@
-import { gql } from "apollo-server";
+const { gql } = require('apollo-server')
 
-export const apiFiltersTypedefs = gql`
+const apiFiltersTypedefs = gql`
   input ApiFiltersInput {
     _sort: String
     _order: ApiFilterOrder
@@ -13,3 +13,6 @@ export const apiFiltersTypedefs = gql`
     desc
   }
 `
+module.exports = {
+  apiFiltersTypedefs
+}

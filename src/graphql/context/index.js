@@ -1,4 +1,4 @@
-import jwt from 'jsonwebtoken';
+const { jwt } = require('jsonwebtoken')
 
 const verifyJwtToken = async (token) => {
   try {
@@ -23,7 +23,7 @@ const authorizeLogin = async (req) => {
   }
 };
 
-export const context = async ({ req, res }) => {
+const context = async ({ req, res }) => {
   let loggedUserId = await authorizeLogin(req);
 
   if (!loggedUserId) {
@@ -35,3 +35,7 @@ export const context = async ({ req, res }) => {
     res,
   };
 };
+
+module.exports = {
+  context
+}
